@@ -55,7 +55,6 @@ Investigation
 Root Cause
 Resolution
 Validation
-Lesson Learned
 ```
 
 See [Troubleshooting](./docs/troubleshooting.md) for full write-ups.
