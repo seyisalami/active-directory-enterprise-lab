@@ -1,8 +1,8 @@
-# Active Directory Homelab
+# Active Directory Enterprise Lab
 
 A Windows enterprise homelab built with Hyper-V, Windows Server 2025, Windows 11 Enterprise, Active Directory Domain Services, DNS, DHCP, Group Policy, file services, and PowerShell.
 
-The goal of this project is to build hands-on experience with Windows administration, networking, identity management, automation, and troubleshooting.
+The goal of this project is to build practical experience with Windows administration, networking, identity management, automation, and troubleshooting.
 
 ## Lab Overview
 
@@ -87,6 +87,8 @@ See [Troubleshooting](./docs/troubleshooting.md) for full write-ups.
 - DHCP role and AD authorization
 - DHCP client configuration
 - Group Policy
+
+See [Screenshots](./screenshots/) for validation.
 
 ### In Progress
 - File services
