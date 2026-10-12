@@ -55,11 +55,7 @@ SRV01 displayed a Kerberos/authentication error when completing DHCP post-instal
 **Investigation**
 Verified that SRV01 was domain joined and could communicate with DC01.
 
-The logged-in account was checked with:
-
-```powershell
-whoami
-```
+The logged-in account was checked with `whoami`
 
 The result showed that SRV01 was being administered using the local Administrator account rather than a domain administrative account.
 
@@ -74,12 +70,7 @@ Logged out of the local Administrator account and signed into SRV01 using the `C
 The DHCP post-install configuration was then completed successfully, allowing SRV01 to be authorized in Active Directory.
 
 **Validation**
-Verified the authorized DHCP servers with:
-
-```powershell
-Get-DhcpServerInDC
-```
-
+Verified the authorized DHCP servers with `Get-DhcpServerInDC`
 Confirmed that SRV01 appeared as:
 
 ```text
