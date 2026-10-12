@@ -44,32 +44,32 @@ Opened PowerShell as an administrator and executed `gpresult /r /SCOPE COMPUTER`
 
 ## 3. DHCP Authorization Kerberos Issue
 
-**Issue**
+**Issue:**
 SRV01 displayed a Kerberos/authentication error when completing DHCP post-install configuration.
 
-**Symptoms**
+**Symptoms:**
 - DHCP Server role installed successfully.
 - The DHCP post-install configuration wizard failed when attempting to authorize the server in Active Directory.
 - The error appeared to be related to domain authentication/Kerberos.
 
-**Investigation**
+**Investigation:**
 Verified that SRV01 was domain joined and could communicate with DC01.
 
 The logged-in account was checked with `whoami`
 
 The result showed that SRV01 was being administered using the local Administrator account rather than a domain administrative account.
 
-**Root Cause**
+**Root Cause:**
 The DHCP authorization process requires permission to modify the list of authorized DHCP servers in Active Directory.
 
 The local SRV01 Administrator account had administrative rights on SRV01 but did not have the required permissions in the `corp.adlab.test` domain.
 
-**Resolution**
+**Resolution:**
 Logged out of the local Administrator account and signed into SRV01 using the `CORP\Administrator` account.
 
 The DHCP post-install configuration was then completed successfully, allowing SRV01 to be authorized in Active Directory.
 
-**Validation**
+**Validation:**
 Verified the authorized DHCP servers with `Get-DhcpServerInDC`
 Confirmed that SRV01 appeared as:
 
