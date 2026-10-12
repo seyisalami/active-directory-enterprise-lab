@@ -41,3 +41,49 @@ By design, running `gpresult` without any administrative privilege only returns 
 
 **Resolution / Validation:** 
 Opened PowerShell as an administrator and executed `gpresult /r /SCOPE COMPUTER`. The report successfully bypassed the user restrictions and exposed the `GPO-Workstation-Security-Baseline` under the Applied Group Policy Objects list.
+
+## 3. DHCP Authorization Kerberos Issue
+
+**Issue**
+SRV01 displayed a Kerberos/authentication error when completing DHCP post-install configuration.
+
+**Symptoms**
+- DHCP Server role installed successfully.
+- The DHCP post-install configuration wizard failed when attempting to authorize the server in Active Directory.
+- The error appeared to be related to domain authentication/Kerberos.
+
+**Investigation**
+Verified that SRV01 was domain joined and could communicate with DC01.
+
+The logged-in account was checked with:
+
+```powershell
+whoami
+```
+
+The result showed that SRV01 was being administered using the local Administrator account rather than a domain administrative account.
+
+**Root Cause**
+The DHCP authorization process requires permission to modify the list of authorized DHCP servers in Active Directory.
+
+The local SRV01 Administrator account had administrative rights on SRV01 but did not have the required permissions in the `corp.adlab.test` domain.
+
+**Resolution**
+Logged out of the local Administrator account and signed into SRV01 using the `CORP\Administrator` account.
+
+The DHCP post-install configuration was then completed successfully, allowing SRV01 to be authorized in Active Directory.
+
+**Validation**
+Verified the authorized DHCP servers with:
+
+```powershell
+Get-DhcpServerInDC
+```
+
+Confirmed that SRV01 appeared as:
+
+```text
+10.10.10.20    SRV01.corp.adlab.test
+```
+
+DHCP configuration could then proceed normally.
