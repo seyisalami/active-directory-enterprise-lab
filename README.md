@@ -91,17 +91,17 @@ See [Troubleshooting](./docs/troubleshooting.md) for full write-ups.
 See [Screenshots](./screenshots/) for validation.
 
 ### In Progress
+- Expanded PowerShell automation
 - File services
 - Security groups
+- Permissions
+- Additional Group Policy configurations
 
 ### Planned
-- Permissions
 - Second Domain Controller
 - AD replication testing
 - Ubuntu Server integration
-- Additional Group Policy configurations
 - Windows LAPS
-- Expanded PowerShell automation
 - Additional Windows clients
 - Linux authentication using Active Directory
 - Centralized logging and monitoring
