@@ -5,7 +5,7 @@ Active Directory is used to centrally manage users, computers, and security grou
 
 ## Configuration
 - Created departmental OUs for IT, HR, Finance, and Management.
-- Created domain users using PowerShell and the CSV file under the [data](active-directory-enterprise-lab/data/users.csv) folder
+- Created domain users using PowerShell and the CSV file under the [data](data/users.csv) folder
 - Implementing security groups to manage departmental access.
 
 ### Security Groups
