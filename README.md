@@ -87,21 +87,13 @@ See [Troubleshooting](./docs/troubleshooting.md) for full write-ups.
 - DHCP role and AD authorization
 - DHCP client configuration
 - Group Policy
+- File services
+- Security groups
+- Permissions
+
 
 See [Screenshots](./screenshots/) for validation.
 
 ### In Progress
 - Expanded PowerShell automation
-- File services
-- Security groups
-- Permissions
-- Additional Group Policy configurations
-
-### Planned
-- Second Domain Controller
-- AD replication testing
-- Ubuntu Server integration
-- Windows LAPS
-- Additional Windows clients
-- Linux authentication using Active Directory
-- Centralized logging and monitoring
+- Hybrid enterprise environment
