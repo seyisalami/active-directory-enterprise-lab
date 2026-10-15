@@ -23,7 +23,7 @@ gpresult /r
 gpresult /r /scope computer
 ```
 
-Verify that the expected GPOs apply successfully.
+Verified that the expected GPOs applied successfully.
 
 ## Key Takeaway
 Group Policy allows administrators to distribute configurations across multiple computers without configuring each device manually.
