@@ -7,7 +7,7 @@ flowchart TD
     GPMC["Group Policy Management"]
 
     GPMC --> Drives["GPO: Drive Mappings"]
-    GPMC --> Security["GPO: Workstation Security"]
+    GPMC --> Security["GPO: Workstation Security Baseline"]
     GPMC --> RDP["GPO: Workstation RDP"]
 
     Drives --> Users["Users OU"]
