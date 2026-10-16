@@ -53,8 +53,6 @@ flowchart TD
 **Domain:** `corp.adlab.test`  
 **Lab Network:** `10.10.10.0/24`
 
-For the full network and Active Directory design, see [Architecture](./docs/architecture.md).
-
 ## Features
 
 - Active Directory Domain Services
@@ -69,32 +67,22 @@ For the full network and Active Directory design, see [Architecture](./docs/arch
 - Hyper-V networking and NAT
 - Troubleshooting documentation
 
+## Documentation
+
+- [Lab Architecture](./docs/architecture.md)
+- [Active Directory](./docs/active-directory.md)
+- [Group Policy](./docs/group-policy.md)
+- [File Services](./docs/file-services.md)
+- [Troubleshooting](./docs/troubleshooting.md)
+- [Screenshots](./screenshots/)
+
 ## PowerShell Automation
 
 PowerShell scripts are used to automate common administration tasks.
 
-User provisioning is performed from fictional CSV data stored in:
-
-```text
-data/users.csv
-```
+User provisioning is performed from fictional CSV data stored in: [`data/users.csv`](./data/users.csv).
 
 Planned improvements include duplicate checks, logging, validation, group assignment, and error handling.
-
-## Troubleshooting
-
-Problems encountered during the build are documented using:
-
-```text
-Issue
-Symptoms
-Investigation
-Root Cause
-Resolution
-Validation
-```
-
-See [Troubleshooting](./docs/troubleshooting.md) for full write-ups.
 
 ## Skills Demonstrated
 
@@ -127,9 +115,6 @@ See [Troubleshooting](./docs/troubleshooting.md) for full write-ups.
 - File services
 - Security groups
 - Permissions
-
-
-See [Screenshots](./screenshots/) for validation.
 
 ### In Progress
 - Expanded PowerShell automation

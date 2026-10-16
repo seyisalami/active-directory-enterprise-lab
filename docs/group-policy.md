@@ -18,20 +18,8 @@ flowchart TD
     Computers --> Client["CLIENT01"]
 
     HR --> Share["HR Network Drive - H:"]
-    Client --> Settings["Screen Lock, Disable guest access, Audit logon events, RDP Access..."]
+    Client --> Settings["Screen Lock, Disable guest access, Auditing, Restrict RDP access..."]
 ```
-
-Group Policy is used to centrally manage workstation settings, security configurations, and access to shared resources.
-
-## Planned Configurations
-
-| GPO | Purpose |
-|---|---|
-| GPO-Drive-Mappings | Automatically map departmental network drives |
-| GPO-Workstation-Security-Baseline | Configure screen lock and auditing |
-| GPO-Workstation-RDP | Restrict Remote Desktop access |
-
-Policies will be linked to the appropriate user or computer OUs.
 
 ## Validation
 
@@ -43,7 +31,7 @@ gpresult /r
 gpresult /r /scope computer
 ```
 
-Verified that the expected GPOs applied successfully.
+Verified that the expected GPOs were applied successfully.
 
 ## Key Takeaway
 Group Policy allows administrators to distribute configurations across multiple computers without configuring each device manually.

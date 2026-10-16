@@ -22,6 +22,13 @@ Instead of configuring the local machine manually, I implemented an enterprise-w
 2. Navigated to `Computer Configuration > Preferences > Control Panel Settings > Local Users and Groups`.
 3. Created an Update rule to explicitly add `CORP\Domain Users` to the built-in `Remote Desktop Users` local group.
 
+**Security Improvement:**
+To follow the principle of least privilege, the broad `Domain Users` membership was replaced with a dedicated security group:
+
+`CORP\GG_Workstation_RDP_Users`
+
+Only authorized users were added to this group.
+
 **Validation:** 
 Executed `gpupdate /force` on CLIENT01 via a basic session. Closed the console, re-enabled Enhanced Session, and successfully authenticated as a standard domain user.
 
@@ -71,6 +78,7 @@ The DHCP post-install configuration was then completed successfully, allowing SR
 
 **Validation:**
 Verified the authorized DHCP servers with `Get-DhcpServerInDC`
+
 Confirmed that SRV01 appeared as:
 
 ```text

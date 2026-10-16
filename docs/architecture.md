@@ -187,4 +187,4 @@ CLIENT01 is used to test:
 
 I chose to use an internal Hyper-V network instead of placing the virtual machines directly on my physical home network.
 
-This reduces the chances of lab services such as DHCP affecting my physical devices and provides a controlled environment for testing. I've also enabled DHCP Guard in Hyper-V for SRV01. This design choice also mitigates any bandwidth constraints on my host computer.
+This reduces the chances of lab services such as DHCP affecting my physical devices and provides a controlled environment for testing.

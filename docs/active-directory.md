@@ -37,7 +37,7 @@ Active Directory is used to centrally manage users, computers, and security grou
 | GG_Finance_Users | DL_Finance_RW |
 | GG_IT_Users | DL_IT_RW |
 
-The lab uses the **AGDLP** model:
+This lab implements the **AGDLP** model:
 
 ```mermaid
 flowchart LR

@@ -21,17 +21,7 @@ flowchart TD
     DLIT -->|Modify| IT
 ```
 
-SRV01 will provide centralized file sharing with access controlled through Active Directory security groups.
-
-## Planned Configuration
-
-```text
-D:\Shares
-├── HR
-├── Finance
-├── IT
-└── Public
-```
+SRV01 provides centralized file sharing with access controlled through Active Directory security groups.
 
 ### Permissions
 
@@ -41,8 +31,6 @@ D:\Shares
 | Finance | DL_Finance_RW | Modify |
 | IT | DL_IT_RW | Modify |
 | Public | Authorized users | Read |
-
-SMB share permissions and NTFS permissions were configured to ensure departmental access.
 
 ## Validation
 
