@@ -1,6 +1,26 @@
 # Group Policy Configuration
 
 ## Overview
+
+```mermaid
+flowchart TD
+    GPMC["Group Policy Management"]
+
+    GPMC --> Drives["GPO: Drive Mappings"]
+    GPMC --> Security["GPO: Workstation Security"]
+    GPMC --> RDP["GPO: Workstation RDP"]
+
+    Drives --> Users["Users OU"]
+    Security --> Computers["Workstations OU"]
+    RDP --> Computers
+
+    Users --> HR["HR Users"]
+    Computers --> Client["CLIENT01"]
+
+    HR --> Share["HR Network Drive - H:"]
+    Client --> Settings["Screen Lock, Disable guest access, Audit logon events, RDP Access..."]
+```
+
 Group Policy is used to centrally manage workstation settings, security configurations, and access to shared resources.
 
 ## Planned Configurations

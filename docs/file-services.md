@@ -1,6 +1,26 @@
 # File Services and Permissions
 
 ## Overview
+
+```mermaid
+flowchart TD
+    SRV01[SRV01 File Server]
+    SRV01 --> Shares[D:\Shares]
+
+    Shares --> HR[HR]
+    Shares --> Finance[Finance]
+    Shares --> IT[IT]
+    Shares --> Public[Public]
+
+    GGHR[GG_HR_Users] --> DLHR[DL_HR_RW]
+    GGFIN[GG_Finance_Users] --> DLFIN[DL_Finance_RW]
+    GGIT[GG_IT_Users] --> DLIT[DL_IT_RW]
+
+    DLHR -->|Modify| HR
+    DLFIN -->|Modify| Finance
+    DLIT -->|Modify| IT
+```
+
 SRV01 will provide centralized file sharing with access controlled through Active Directory security groups.
 
 ## Planned Configuration

@@ -1,6 +1,27 @@
 # Active Directory Management
 
 ## Overview
+
+```mermaid
+flowchart TD
+    Domain[corp.adlab.test]
+    Domain --> Corp[Corp]
+
+    Corp --> Users[Users]
+    Users --> IT[IT]
+    Users --> HR[HR]
+    Users --> Finance[Finance]
+    Users --> Management[Management]
+
+    Corp --> Computers[Computers]
+    Computers --> Workstations[Workstations]
+    Computers --> Servers[Servers]
+
+    Corp --> Groups[Groups]
+    Corp --> AdminAccounts[Admin Accounts]
+    Corp --> ServiceAccounts[Service Accounts]
+```
+
 Active Directory is used to centrally manage users, computers, and security groups in the `corp.adlab.test` domain.
 
 ## Configuration
@@ -17,6 +38,18 @@ Active Directory is used to centrally manage users, computers, and security grou
 | GG_IT_Users | DL_IT_RW |
 
 The lab uses the **AGDLP** model:
+
+```mermaid
+flowchart LR
+    User[User Account<br>ajohnson]
+    GG[GG_HR_Users<br>Global Group]
+    DL[DL_HR_RW<br>Domain Local Group]
+    Resource[HR Share<br>\\SRV01\HR]
+
+    User --> GG
+    GG --> DL
+    DL -->|Modify| Resource
+```
 
 Accounts → Global Groups → Domain Local Groups → Permissions
 

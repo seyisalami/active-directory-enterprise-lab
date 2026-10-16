@@ -14,6 +14,36 @@ corp.adlab.test
 
 ## Network Architecture
 
+```mermaid
+flowchart TD
+    Internet["Internet"]
+    Router["Xfinity Router - 10.0.0.1"]
+
+    subgraph Host["Windows 11 Hyper-V Host"]
+        NIC["Physical Network Adapter - 10.0.0.x"]
+        NAT["Windows NAT - 10.10.10.0/24"]
+        Gateway["Virtual Gateway - 10.10.10.1"]
+        Switch["ADLab-Switch - Internal Virtual Switch"]
+
+        NIC <--> NAT
+        NAT <--> Gateway
+        Gateway <--> Switch
+    end
+
+    subgraph Lab["Active Directory Lab - 10.10.10.0/24"]
+        DC01["DC01 - 10.10.10.10 - AD DS / DNS"]
+        SRV01["SRV01 - 10.10.10.20 - DHCP / File Services"]
+        CLIENT01["CLIENT01 - DHCP - Windows 11"]
+    end
+
+    Internet <--> Router
+    Router <--> NIC
+
+    Switch <--> DC01
+    Switch <--> SRV01
+    Switch <--> CLIENT01
+```
+
 The lab uses the private subnet:
 
 ```text
