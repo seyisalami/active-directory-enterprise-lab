@@ -139,7 +139,7 @@ External DNS requests are resolved through the DNS server rather than configurin
 
 SRV01 provides DHCP services for client systems.
 
-The planned DHCP scope uses addresses from:
+The DHCP scope uses addresses from:
 
 ```text
 10.10.10.100 - 10.10.10.199

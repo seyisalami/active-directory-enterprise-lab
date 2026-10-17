@@ -23,11 +23,7 @@ Instead of configuring the local machine manually, I implemented an enterprise-w
 3. Created an Update rule to explicitly add `CORP\Domain Users` to the built-in `Remote Desktop Users` local group.
 
 **Security Improvement:**
-To follow the principle of least privilege, the broad `Domain Users` membership was replaced with a dedicated security group:
-
-`CORP\GG_Workstation_RDP_Users`
-
-Only authorized users were added to this group.
+To follow the principle of least privilege, the broad `Domain Users` membership was replaced with a separate GPO `GPO-Workstation-RDP` linked to the workstation OU and is configured to automatically assign the `CORP\GG_Workstation_RDP_Users` group as members of the built-in Remote Desktop Users group. Only authorized users are added to this group.
 
 **Validation:** 
 Executed `gpupdate /force` on CLIENT01 via a basic session. Closed the console, re-enabled Enhanced Session, and successfully authenticated as a standard domain user.
@@ -38,16 +34,17 @@ Executed `gpupdate /force` on CLIENT01 via a basic session. Closed the console, 
 After successfully pulling the GPO, `gpresult /r` still did not list the Computer Configuration policy when executed by a standard user.
 
 **Symptoms:** 
-Standard user `ajohnson` could log in via Enhanced Session (proving the GPO worked), but generating a policy report as that user would not show the GPO being applied.
+Standard user `jbrown` could log in via Enhanced Session (proving the GPO worked), but generating a policy report as that user would not show the GPO being applied.
 
 **Investigation:** 
-Active Directory splits Group Policy into Computer Configuration and User Configuration. Standard users lack the local security privileges to read the applied Computer Configuration policies. 
+Standard users lack the local security privileges to read the applied Computer Configuration policies. 
 
 **Root Cause:** 
 By design, running `gpresult` without any administrative privilege only returns the User Scope. 
 
 **Resolution / Validation:** 
-Opened PowerShell as an administrator and executed `gpresult /r /SCOPE COMPUTER`. The report successfully bypassed the user restrictions and exposed the `GPO-Workstation-Security-Baseline` under the Applied Group Policy Objects list.
+Opened PowerShell as an administrator and executed `gpresult /r /SCOPE COMPUTER`. The report
+exposed the `GPO-Workstation-Security-Baseline` under the Applied Group Policy Objects list.
 
 ## 3. DHCP Authorization Kerberos Issue
 

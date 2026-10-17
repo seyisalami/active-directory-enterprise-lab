@@ -27,7 +27,7 @@ Active Directory is used to centrally manage users, computers, and security grou
 ## Configuration
 - Created departmental OUs for IT, HR, Finance, and Management.
 - Created domain users using PowerShell and a CSV file.
-- Implementing security groups to manage departmental access.
+- Implemented security groups to manage departmental access.
 
 ### Security Groups
 
@@ -41,7 +41,7 @@ This lab implements the **AGDLP** model:
 
 ```mermaid
 flowchart LR
-    User[User Account<br>ajohnson]
+    User[User Account<br>jbrown]
     GG[GG_HR_Users<br>Global Group]
     DL[DL_HR_RW<br>Domain Local Group]
     Resource[HR Share<br>\\SRV01\HR]
