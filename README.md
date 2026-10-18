@@ -77,7 +77,9 @@ flowchart TD
 
 ## Role-Based Access in Action
 
-Department shares on SRV01 are protected with AD security groups using the AGDLP model. A member of the Finance group can open and edit files on `\\SRV01\Finance`, while a user outside Finance is denied.
+Department shares on SRV01 are protected with AD security groups using the AGDLP model. A member of the Finance group can open and edit files on `\\SRV01\Finance`, while a user outside Finance is denied. 
+
+Each user also only sees their own department’s drive, mapped by Group Policy.
 
 <table>
   <tr>
@@ -97,6 +99,8 @@ See [File Services](./docs/file-services.md) for the full permission design.
 PowerShell scripts are used to automate common administration tasks.
 
 [`New-ADUsersFromCsv.ps1`](./scripts/powershell/New-ADUsersFromCsv.ps1) provisions users into their department OUs from fictional CSV data stored in [`data/users.csv`](./data/users.csv).
+
+Run it from the repository root: `.\scripts\powershell\New-ADUsersFromCsv.ps1`
 
 Planned improvements include duplicate checks, logging, validation, group assignment, and error handling.
 

@@ -45,8 +45,7 @@ Standard users lack the local security privileges to read the applied Computer C
 By design, running `gpresult` without any administrative privilege only returns the User Scope. 
 
 **Resolution / Validation:** 
-Opened PowerShell as an administrator and executed `gpresult /r /SCOPE COMPUTER`. The report
-exposed the `GPO-Workstation-Security-Baseline` under the Applied Group Policy Objects list.
+Opened PowerShell as an administrator and executed `gpresult /r /scope computer`. The report listed `GPO-Workstation-Security-Baseline` and `GPO-Workstation-RDP` under Applied Group Policy Objects.
 
 ![gpresult computer scope showing the workstation GPOs](../screenshots/group-policy/computer-gpo-application-validation.png)
 
