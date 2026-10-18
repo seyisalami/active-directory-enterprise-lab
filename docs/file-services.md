@@ -23,6 +23,8 @@ flowchart TD
 
 SRV01 provides centralized file sharing with access controlled through Active Directory security groups.
 
+The shares live on a dedicated data disk (`D:`), backed by a [separate virtual hard disk](../screenshots/srv01/added-file-server-vhdx.png) attached to SRV01, so share data is kept off the operating system volume.
+
 ### Permissions
 
 | Folder | Security Group | NTFS Permission |
@@ -32,12 +34,24 @@ SRV01 provides centralized file sharing with access controlled through Active Di
 | IT | DL_IT_RW | Modify |
 | Public | Authorized users | Read |
 
+On the departmental folders, inheritance is disabled so that only Administrators, SYSTEM, and the department's domain local group have [access](../screenshots/security/ntfs-permissions.png).
+
 ## Validation
 
 From CLIENT01:
-- HR users could access `\\SRV01\HR`.
-- Finance users were denied access to the HR share.
-- Authorized users were able to create and modify files in their respective departmental shares.
+- Members of a department's group could open, create, and modify files in that department's share.
+- Users outside the department were denied access.
+
+<table>
+  <tr>
+    <td width="50%"><img src="../screenshots/file-services/smb-share-access-validation.png" alt="Finance user editing a file on the Finance share"></td>
+    <td width="50%"><img src="../screenshots/security/permission-test.png" alt="Non-Finance user denied access to the Finance share"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Authorized:</b> Finance user creates and edits <code>test.txt</code></td>
+    <td align="center"><b>Denied:</b> user outside Finance is blocked</td>
+  </tr>
+</table>
 
 ## Key Takeaway
 Combining AD security groups with SMB and NTFS permissions enables centralized, role-based access to shared resources.

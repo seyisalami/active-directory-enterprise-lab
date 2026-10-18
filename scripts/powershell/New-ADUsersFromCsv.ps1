@@ -7,9 +7,6 @@
 #Import the Active Directory module
 Import-Module ActiveDirectory
 
-# Prompt for the default password securely
-$Password = Read-Host "Enter temporary user password" -AsSecureString
-
 # Path to the CSV file containing user information
 $CsvPath = ".\data\users.csv"
 
@@ -20,6 +17,9 @@ if($TestCsvPath -eq $false) {
      Write-Host "Cannot find CSV file at $CsvPath. Please check the path and try again." -ForegroundColor Red
      return
 }
+
+# Prompt for the default password securely
+$Password = Read-Host "Enter temporary user password" -AsSecureString
 
 # Import users from CSV
 $Users = Import-Csv $CsvPath

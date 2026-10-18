@@ -74,13 +74,29 @@ flowchart TD
 - [Group Policy](./docs/group-policy.md)
 - [File Services](./docs/file-services.md)
 - [Troubleshooting](./docs/troubleshooting.md)
-- [Screenshots](./screenshots/)
+
+## Role-Based Access in Action
+
+Department shares on SRV01 are protected with AD security groups using the AGDLP model. A member of the Finance group can open and edit files on `\\SRV01\Finance`, while a user outside Finance is denied.
+
+<table>
+  <tr>
+    <td width="50%"><img src="./screenshots/file-services/smb-share-access-validation.png" alt="Finance user editing a file on the Finance share"></td>
+    <td width="50%"><img src="./screenshots/security/permission-test.png" alt="Non-Finance user denied access to the Finance share"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Authorized:</b> Finance user creates and edits a file</td>
+    <td align="center"><b>Denied:</b> user outside Finance is blocked</td>
+  </tr>
+</table>
+
+See [File Services](./docs/file-services.md) for the full permission design.
 
 ## PowerShell Automation
 
 PowerShell scripts are used to automate common administration tasks.
 
-User provisioning is performed from fictional CSV data stored in: [`data/users.csv`](./data/users.csv).
+[`New-ADUsersFromCsv.ps1`](./scripts/powershell/New-ADUsersFromCsv.ps1) provisions users into their department OUs from fictional CSV data stored in [`data/users.csv`](./data/users.csv).
 
 Planned improvements include duplicate checks, logging, validation, group assignment, and error handling.
 
@@ -118,4 +134,4 @@ Planned improvements include duplicate checks, logging, validation, group assign
 
 ### In Progress
 - Expanded PowerShell automation
-- Hybrid enterprise environment
+- Hybrid identity management (Microsoft Entra ID)

@@ -63,7 +63,7 @@ The physical host remains connected to the home network separately. My home rout
 
 ## Virtual Network
 
-A Hyper-V Internal Virtual Switch named `ADLab-Switch` connects the host and all virtual machines.
+A Hyper-V Internal Virtual Switch named [ADLab-Switch](../screenshots/hyperv/hyperv-network.png) connects the host and all virtual machines.
 
 The internal switch allows communication between lab VMs while keeping them isolated from devices on the physical home network.
 
@@ -135,6 +135,8 @@ Using the Domain Controller as the DNS server allows clients to locate Active Di
 
 External DNS requests are resolved through the DNS server rather than configuring domain clients to use public DNS servers directly.
 
+The domain controller's [SRV record](../screenshots/dc01/dc-dns.png) resolves correctly, which is what domain members rely on to find a DC.
+
 ## DHCP Design
 
 SRV01 provides DHCP services for client systems.
@@ -161,6 +163,12 @@ Infrastructure servers use static IP addresses so services such as DNS and Activ
 
 Client systems can use DHCP because their addresses do not need to remain fixed.
 
+The scope's address pool on SRV01, and CLIENT01 holding a lease from it:
+
+![DHCP address pool on SRV01](../screenshots/dhcp-dns/svr01-dhcp-address-pool.png)
+
+![CLIENT01 DHCP lease](../screenshots/dhcp-dns/client01-dhcp-lease.png)
+
 ## Client Configuration
 
 CLIENT01 represents a typical domain workstation.
@@ -180,6 +188,10 @@ CLIENT01 is used to test:
 - DHCP
 - File share permissions
 - Security group membership
+
+A standard domain user signed in to CLIENT01:
+
+![Domain user signed in to CLIENT01](../screenshots/client01/domain-authentication.png)
 
 ## Design Decisions
 

@@ -23,10 +23,12 @@ Instead of configuring the local machine manually, I implemented an enterprise-w
 3. Created an Update rule to explicitly add `CORP\Domain Users` to the built-in `Remote Desktop Users` local group.
 
 **Security Improvement:**
-To follow the principle of least privilege, the broad `Domain Users` membership was replaced with a separate GPO `GPO-Workstation-RDP` linked to the workstation OU and is configured to automatically assign the `CORP\GG_Workstation_RDP_Users` group as members of the built-in Remote Desktop Users group. Only authorized users are added to this group.
+To follow the principle of least privilege, I removed the Domain Users rule from the baseline and created `GPO-Workstation-RDP` to grant RDP only to `GG_Workstation_RDP_Users`. This new GPO is configured to automatically assign the `CORP\GG_Workstation_RDP_Users` group as members of the built-in Remote Desktop Users group. Only authorized users are added to this group.
 
 **Validation:** 
 Executed `gpupdate /force` on CLIENT01 via a basic session. Closed the console, re-enabled Enhanced Session, and successfully authenticated as a standard domain user.
+
+![Standard domain user signed in to CLIENT01](../screenshots/client01/domain-authentication.png)
 
 ## 2. Group Policy Scope Visibility Constraints
 
@@ -45,6 +47,8 @@ By design, running `gpresult` without any administrative privilege only returns 
 **Resolution / Validation:** 
 Opened PowerShell as an administrator and executed `gpresult /r /SCOPE COMPUTER`. The report
 exposed the `GPO-Workstation-Security-Baseline` under the Applied Group Policy Objects list.
+
+![gpresult computer scope showing the workstation GPOs](../screenshots/group-policy/computer-gpo-application-validation.png)
 
 ## 3. DHCP Authorization Kerberos Issue
 
