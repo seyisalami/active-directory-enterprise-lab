@@ -82,7 +82,7 @@ Department shares on SRV01 are protected with AD security groups using the AGDLP
 <table>
   <tr>
     <td width="50%"><img src="./screenshots/file-services/smb-share-access-validation.png" alt="Finance user editing a file on the Finance share"></td>
-    <td width="50%"><img src="./screenshots/security/permission-test.png" alt="Non-Finance user denied access to the Finance share"></td>
+    <td width="50%"><img src="./screenshots/security/smb-share-access-test.png" alt="Non-Finance user denied access to the Finance share"></td>
   </tr>
   <tr>
     <td align="center"><b>Authorized:</b> Finance user creates and edits a file</td>
