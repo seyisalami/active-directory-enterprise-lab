@@ -75,7 +75,7 @@ flowchart TD
 - [File Services](./docs/file-services.md)
 - [Troubleshooting](./docs/troubleshooting.md)
 
-## Role-Based Access in Action
+## Role-Based Access Demonstration
 
 Department shares on SRV01 are protected with AD security groups using the AGDLP model. A member of the Finance group can open and edit files on `\\SRV01\Finance`, while a user outside Finance is denied. 
 
@@ -87,8 +87,8 @@ Each user also only sees their own department’s drive, mapped by Group Policy.
     <td width="50%"><img src="./screenshots/file-services/smb-share-access-test.png" alt="Non-Finance user denied access to the Finance share"></td>
   </tr>
   <tr>
-    <td align="center"><b>Authorized:</b> Finance user creates and edits a file</td>
-    <td align="center"><b>Denied:</b> user outside Finance is blocked</td>
+    <td align="center"><b>Authorized:</b> A Finance user is able to view, create and edit a text file</td>
+    <td align="center"><b>Denied:</b> An IT user trying to access Finance is blocked</td>
   </tr>
 </table>
 
