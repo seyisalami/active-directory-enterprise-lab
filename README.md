@@ -138,4 +138,7 @@ Planned improvements include duplicate checks, logging, validation, group assign
 
 ### In Progress
 - Expanded PowerShell automation
+
+### Planned
 - Hybrid identity management (Microsoft Entra ID)
+- Linux Server integration
