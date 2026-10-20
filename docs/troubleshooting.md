@@ -8,7 +8,9 @@ This document tracks configuration issues, root cause analyses, and resolutions 
 Standard domain users were unable to authenticate into the domain-joined client virtual machine using the Hyper-V console.
 
 **Symptoms:** 
-Attempting to log into CLIENT01 as a newly created standard user resulted in the error: *"The connection was denied because the user account is not authorized for remote login."*
+Attempting to log into CLIENT01 as a newly created standard user resulted in the error: *"To sign in remotely, you need the right to sign in through Remote Desktop Services."*
+
+![Enhanced session login Issue](../screenshots/client01/RDP-issue.png)
 
 **Investigation:** 
 Identified that the Hyper-V console defaults to "Enhanced Session Mode," which relies on the Remote Desktop Protocol (RDP). Standard users lack local RDP rights by default. Disabling Enhanced Session allowed logins to succeed, confirming the issue was tied specifically to RDP rights, not Active Directory authentication.
@@ -86,3 +88,20 @@ Confirmed that SRV01 appeared as:
 ```
 
 DHCP configuration could then proceed normally.
+
+## 4. Removed GPO Setting Left RDP Access in Place
+
+**Issue:**
+After moving RDP access to `GPO-Workstation-RDP`, a new user with no group memberships could still sign in through Enhanced Session.
+
+**Investigation:**
+`Get-LocalGroupMember -Group "Remote Desktop Users"` on CLIENT01 showed three members: `CORP\GG_Workstation_RDP_Users`, plus `CORP\Domain Users` left over from the original baseline rule and `CORP\ajohnson`, a user I added manually during earlier testing.
+
+**Root Cause:**
+Group Policy Preferences used the `Update` action, which only adds members. Removing the original rule from the baseline GPO stopped it from applying, but did not remove the membership it had already created.
+
+**Resolution:**
+Enabled "Delete all member users" and "Delete all member groups" on the Remote Desktop Users item in `GPO-Workstation-RDP`, so the group's membership is enforced every time the policy refreshes.
+
+**Validation:**
+After `gpupdate /force`, only `CORP\GG_Workstation_RDP_Users` remained in the local group. A user outside that group received "To sign in remotely, you need the right to sign in through Remote Desktop Services."
